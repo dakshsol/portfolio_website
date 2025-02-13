@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-s75(r0@29$u6$-0h6#j_0&#xn7qmwl462fv8cde0f9vi-5iyb7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1","https://portfolio-website8-i5or.onrender.com","localhost"]
+ALLOWED_HOSTS = ["https://portfoliowebsite.up.railway.app/"]
 
 
 # Application definition
@@ -56,7 +56,7 @@ MIDDLEWARE = [
 MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-CSRF_TRUSTED_ORIGINS= [""]
+CSRF_TRUSTED_ORIGINS= ["https://portfoliowebsite.up.railway.app/"]
 
 ROOT_URLCONF = 'portfolio_website.urls'
 
