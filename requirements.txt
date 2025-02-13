@@ -2,7 +2,6 @@ asgiref==3.8.1
 certifi==2025.1.31
 charset-normalizer==3.4.1
 Django==5.1.6
-django-admin-argon-dashboard==1.0.22
 django-adminlte-3==0.1.6
 gunicorn==23.0.0
 idna==3.10
