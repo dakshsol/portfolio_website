@@ -56,9 +56,7 @@ MIDDLEWARE = [
 MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://portfolio-website8-i5or.onrender.com"
-]
+CSRF_TRUSTED_ORIGINS= [""]
 
 ROOT_URLCONF = 'portfolio_website.urls'
 
