@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}AI Model API{% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="text-center text-success mb-4">AI Model API</h1>
+    <p class="lead text-center">Enter text below to get AI-generated responses.</p>
+
+    <form method="POST" id="ai-form" class="p-4 shadow-lg rounded bg-white">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Enter Text:</label>
+            <input type="text" id="input_text" name="input_text" class="form-control" placeholder="Type something..." required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Generate Response</button>
+    </form>
+
+    <div id="ai-response" class="mt-4 p-3 bg-light border rounded" style="display: none;">
+        <h5 class="text-dark">Response:</h5>
+        <p id="response-text"></p>
+    </div>
+</div>
+
+<script>
+    document.getElementById("ai-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        let inputText = document.getElementById("input_text").value;
+
+        fetch("/api/ai_model/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify({ input_text: inputText })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("response-text").innerText = data.response;
+            document.getElementById("ai-response").style.display = "block";
+        })
+        .catch(error => console.error("Error:", error));
+    });
+</script>
+
+{% endblock %}

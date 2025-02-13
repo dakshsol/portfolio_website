@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Upload</title>
+</head>
+<body>
+    <h1>Resumes</h1>
+
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+    <h2>Upload Resume (Admin Only)</h2>
+    <form method="POST" enctype="multipart/form-data" action="{% url 'upload_resume' %}">
+        {% csrf_token %}
+        <input type="file" name="resume" required>
+        <button type="submit">Upload</button>
+    </form>
+    {% endif %}
+
+    <h2>Uploaded Resumes</h2>
+    <ul>
+        {% for resume in resumes %}
+        <li>
+            <a href="{{ resume.resume.url }}" target="_blank">Download Resume (Uploaded on {{ resume.uploaded_at }})</a>
+            <iframe src="{{ resume.resume.url }}" width="500" height="600"></iframe>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
